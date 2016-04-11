@@ -26,6 +26,7 @@ import UIKit
         contentLabelWrapper.layer.shadowColor = UIColor.blackColor().CGColor
         contentLabelWrapper.layer.shadowOpacity = 0.3
         contentLabelWrapper.layer.shadowOffset = CGSize(width: 0, height: 1)
+        contentLabelWrapper.layer.shadowRadius = 2
     }
     
     override func layoutSubviews() {
@@ -39,7 +40,7 @@ import UIKit
         let button = ClosureButton.button(title: tag, onTap: nil)
         
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(tag, forState: UIControlState.Normal)
+        button.setTitle(tag, forState: .Normal)
         
         return button
     }
@@ -72,5 +73,9 @@ import UIKit
         }
         
         tagsWrapper.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[lastButton]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["lastButton": lastButton]))
+    }
+    
+    class func height(content content: String, width: CGFloat) -> CGFloat {
+        return (content as NSString).boundingRectWithSize(CGSize(width: width - 20, height: CGFloat(Int.max)), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 13)!], context: nil).size.height + CGFloat(64)
     }
 }

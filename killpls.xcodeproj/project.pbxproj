@@ -19,6 +19,9 @@
 		8304BD491CB98740003B1AAE /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304BD471CB98740003B1AAE /* ArticleCell.swift */; };
 		8304BD4B1CB98BD1003B1AAE /* ArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8304BD481CB98740003B1AAE /* ArticleCell.xib */; };
 		8304BD4F1CB9A659003B1AAE /* ClosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304BD4E1CB9A659003B1AAE /* ClosureButton.swift */; };
+		8304BD541CBACDAE003B1AAE /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304BD531CBACDAE003B1AAE /* SideViewController.swift */; };
+		8304BD561CBC2127003B1AAE /* LoadingFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304BD551CBC2127003B1AAE /* LoadingFooterView.swift */; };
+		8304BD581CBC215E003B1AAE /* LoadingFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8304BD571CBC215E003B1AAE /* LoadingFooterView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		8304BD471CB98740003B1AAE /* ArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		8304BD481CB98740003B1AAE /* ArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleCell.xib; sourceTree = "<group>"; };
 		8304BD4E1CB9A659003B1AAE /* ClosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureButton.swift; sourceTree = "<group>"; };
+		8304BD531CBACDAE003B1AAE /* SideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
+		8304BD551CBC2127003B1AAE /* LoadingFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingFooterView.swift; sourceTree = "<group>"; };
+		8304BD571CBC215E003B1AAE /* LoadingFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingFooterView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				8304BD411CB96634003B1AAE /* Base */,
+				8304BD521CBACD1D003B1AAE /* Navigation */,
 				8304BD261CB959CA003B1AAE /* Articles */,
 			);
 			path = Stories;
@@ -137,8 +144,18 @@
 			children = (
 				8304BD471CB98740003B1AAE /* ArticleCell.swift */,
 				8304BD481CB98740003B1AAE /* ArticleCell.xib */,
+				8304BD551CBC2127003B1AAE /* LoadingFooterView.swift */,
+				8304BD571CBC215E003B1AAE /* LoadingFooterView.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		8304BD521CBACD1D003B1AAE /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				8304BD531CBACDAE003B1AAE /* SideViewController.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8304BD4B1CB98BD1003B1AAE /* ArticleCell.xib in Resources */,
+				8304BD581CBC215E003B1AAE /* LoadingFooterView.xib in Resources */,
 				8304BD0C1CB930AF003B1AAE /* Assets.xcassets in Resources */,
 				8304BD3E1CB95F97003B1AAE /* ArticlesViewController.xib in Resources */,
 				8304BD181CB950E1003B1AAE /* LaunchScreen.storyboard in Resources */,
@@ -213,11 +231,13 @@
 			files = (
 				8304BD431CB9664F003B1AAE /* NetworkActivityIndicator.swift in Sources */,
 				8304BD3D1CB95F97003B1AAE /* ArticlesViewController.swift in Sources */,
+				8304BD541CBACDAE003B1AAE /* SideViewController.swift in Sources */,
 				8304BD451CB967A5003B1AAE /* DataLoader.swift in Sources */,
 				8304BD051CB930AF003B1AAE /* AppDelegate.swift in Sources */,
 				8304BD491CB98740003B1AAE /* ArticleCell.swift in Sources */,
 				8304BD2D1CB959CA003B1AAE /* Article.swift in Sources */,
 				8304BD401CB9654D003B1AAE /* ArticlesProvider.swift in Sources */,
+				8304BD561CBC2127003B1AAE /* LoadingFooterView.swift in Sources */,
 				8304BD4F1CB9A659003B1AAE /* ClosureButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

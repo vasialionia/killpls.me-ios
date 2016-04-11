@@ -16,10 +16,10 @@ class ClosureButton: UIButton {
     
     var title: String? {
         get {
-            return titleForState(UIControlState.Normal)
+            return titleForState(.Normal)
         }
         set {
-            setTitle(title, forState: UIControlState.Normal)
+            setTitle(newValue, forState: .Normal)
         }
     }
     
@@ -29,18 +29,18 @@ class ClosureButton: UIButton {
     
     class func button(title title: String, onTap: ClosureButtonEvent?) -> ClosureButton {
         
-        let button = ClosureButton(type: UIButtonType.System)
+        let button = ClosureButton(type: .System)
         
         button.onTap = onTap
         button.title = title
         button.titleLabel!.font = UIFont(name: "HelveticaNeue-Light", size: 13)
-        button.addTarget(button, action: "onTap:", forControlEvents: UIControlEvents.TouchUpInside)
+        button.addTarget(button, action: "onTap:", forControlEvents: .TouchUpInside)
         
         return button
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        addTarget(self, action: "onTap:", forControlEvents: UIControlEvents.TouchUpInside)
+        addTarget(self, action: "onTap:", forControlEvents: .TouchUpInside)
     }
 }

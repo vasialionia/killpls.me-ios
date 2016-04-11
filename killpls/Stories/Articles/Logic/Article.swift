@@ -16,6 +16,15 @@ class Article: NSObject {
     let tags: [String]
     let likesCount: Int
     
+    override func isEqual(object: AnyObject?) -> Bool {
+        if let article = object as? Article {
+            return article.id == id
+        }
+        else {
+            return false
+        }
+    }
+    
     var url: NSURL {
         return NSURL(string: "http://killpls.me/story/\(id)")!
     }
