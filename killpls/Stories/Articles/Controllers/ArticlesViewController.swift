@@ -54,9 +54,13 @@ import UIKit
             bottomActivityIndicator.startAnimating()
         }
         
-        articlesProvider.loadArticles(loadMore: loadMore) { [weak refreshControl, bottomActivityIndicator] in
+        articlesProvider.loadArticles(loadMore: loadMore) { [weak refreshControl, bottomActivityIndicator] (error) in
             refreshControl?.endRefreshing()
             bottomActivityIndicator?.stopAnimating()
+            
+            if error != nil {
+                UIAlertView(title: "Ошибка", message: error!, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "OK").show()
+            }
         }
     }
     

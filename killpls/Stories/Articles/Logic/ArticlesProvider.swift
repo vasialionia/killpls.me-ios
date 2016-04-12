@@ -10,7 +10,7 @@ import UIKit
 
 class ArticlesProvider: NSObject {
     
-    typealias ArticlesProviderCompletion = () -> Void
+    typealias ArticlesProviderCompletion = (error: String?) -> Void
     typealias ArticlesProviderEvent = () -> Void
     typealias ArticlesProviderUpdate = (type: UpdateType, indexes: [Int]) -> Void
     
@@ -147,7 +147,7 @@ class ArticlesProvider: NSObject {
             offset = 0
         }
         
-        dataLoader.loadData(url: url) { [weak self] (items) in
+        dataLoader.loadData(url: url) { [weak self] (items, error) in
             
             if self != nil {
                 
@@ -163,7 +163,7 @@ class ArticlesProvider: NSObject {
             
             if completion != nil {
                 dispatch_async(dispatch_get_main_queue()) {
-                    completion?()
+                    completion?(error: error)
                 }
             }
         }

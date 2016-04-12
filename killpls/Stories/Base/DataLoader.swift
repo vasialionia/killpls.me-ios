@@ -10,7 +10,7 @@ import UIKit
 
 class DataLoader: NSObject {
     
-    typealias DataLoaderCompletion = (items: [[String: AnyObject]]) -> Void
+    typealias DataLoaderCompletion = (items: [[String: AnyObject]], error: String?) -> Void
     
     func loadData(url url: NSURL, completionBlock: DataLoaderCompletion?) {
         
@@ -25,14 +25,25 @@ class DataLoader: NSObject {
             
                     do {
                         let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
-                        completionBlock!(items: json as! [[String: AnyObject]])
+                        completionBlock!(items: json as! [[String: AnyObject]], error: nil)
                     }
                     catch {
-                        completionBlock!(items: [])
+                        completionBlock!(items: [], error: "Ошибка сервера")
                     }
                 }
                 else {
-                    completionBlock!(items: [])
+                    var errorDescription: String!
+                    switch error!.code {
+                    case NSURLErrorNotConnectedToInternet:
+                        errorDescription = "Проверьте подключение к сети Интернет"
+                        
+                    case NSURLErrorTimedOut, NSURLErrorCannotFindHost, NSURLErrorCannotConnectToHost, NSURLErrorResourceUnavailable:
+                        errorDescription = "Сервер недоступен"
+                        
+                    default:
+                        errorDescription = "Неизвестная ошибка"
+                    }
+                    completionBlock!(items: [], error: errorDescription)
                 }
             }
             
