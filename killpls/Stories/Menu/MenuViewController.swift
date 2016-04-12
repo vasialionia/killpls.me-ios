@@ -14,6 +14,7 @@ import MessageUI
     enum Sections: Int {
         case New
         case Tags
+        case Tell
         case Contacts
         case SourceCode
         case Count
@@ -74,12 +75,19 @@ import MessageUI
         switch sectionCase {
         case .New:
             return 1
+            
         case .Tags:
             return tags.count
+            
+        case .Tell:
+            return 1
+            
         case .Contacts:
             return ContactsRows.Count.rawValue
+            
         case .SourceCode:
             return SourceCodeRows.Count.rawValue
+            
         case .Count:
             assert(false)
         }
@@ -97,6 +105,9 @@ import MessageUI
             
         case .Tags:
             cell.textLabel!.text = tags[indexPath.row]
+            
+        case .Tell:
+            cell.textLabel!.text = "рассказать историю"
             
         case .Contacts:
             let rowCase = ContactsRows(rawValue: indexPath.row)!
@@ -152,6 +163,9 @@ import MessageUI
             
         case .Tags:
             onTagTap?(tag: tags[indexPath.row])
+            
+        case .Tell:
+            UIApplication.sharedApplication().openURL(NSURL(string: "http://killpls.me/add/")!)
             
         case .SourceCode:
             let rowCase = SourceCodeRows(rawValue: indexPath.row)!
