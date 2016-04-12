@@ -16,6 +16,8 @@ class Article: NSObject {
     let tags: [String]
     let likesCount: Int
     
+    var isVoted = false
+    
     override func isEqual(object: AnyObject?) -> Bool {
         if let article = object as? Article {
             return article.id == id

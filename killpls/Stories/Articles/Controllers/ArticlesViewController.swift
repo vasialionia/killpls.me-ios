@@ -83,6 +83,22 @@ import UIKit
         startLoading()
     }
     
+    private func voteArticle(article article: Article, like: Bool, cell: ArticleCell?) {
+        
+        cell?.likeButton.hidden = true
+        cell?.dislikeButton.hidden = true
+        
+        self.articlesProvider.voteArticle(article: article, like: true) { (error) in
+            
+            if error != nil {
+                
+                cell?.likeButton.hidden = false
+                cell?.dislikeButton.hidden = false
+                UIAlertView(title: "Ошибка", message: error!, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "OK").show()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         
         articlesProvider.onUpdateBegin = { [weak self] in
@@ -135,11 +151,14 @@ import UIKit
         cell.setTags(tags: article.tags)
         cell.likesLabel.text = "\(article.likesCount)"
         
-        cell.likeButton.onTap = { (_) in
-            print("like")
+        cell.likeButton.hidden = article.isVoted
+        cell.likeButton.onTap = { [weak self, weak cell] (_) in
+            self?.voteArticle(article: article, like: true, cell: cell)
         }
-        cell.dislikeButton.onTap = { (_) in
-            print("like")
+        
+        cell.dislikeButton.hidden = article.isVoted
+        cell.dislikeButton.onTap = { [weak self, weak cell] (_) in
+            self?.voteArticle(article: article, like: false, cell: cell)
         }
         
         for button in cell.tagsButtons {

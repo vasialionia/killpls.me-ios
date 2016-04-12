@@ -24,6 +24,7 @@ class ArticlesProvider: NSObject {
     private var articles = [Article]()
     private var offset = 0
     private(set) var isLoading = false
+    private let baseUrl = "http://0.0.0.0:5000/api/"
     
     var onUpdateBegin: ArticlesProviderEvent?
     var onUpdateEnd: ArticlesProviderEvent?
@@ -31,18 +32,18 @@ class ArticlesProvider: NSObject {
     
     var tag: String?
     
-    private var url: NSURL {
+    private let votedArticlesIdsKey = "ArticlesProvider.loadedArticlesIds"
+    private var votedArticlesIds: [Int] {
+        return (NSUserDefaults.standardUserDefaults().objectForKey(votedArticlesIdsKey) ?? []) as! [Int]
+    }
+    
+    private func addVotedArticleId(id id: Int) {
         
-        var urlString = "http://0.0.0.0:5000/api/article"
+        var articlesIds = votedArticlesIds
+        articlesIds.append(id)
         
-        if tag != nil {
-            urlString += "/tag/\(tag!)"
-        }
-        
-        urlString += "?offset=\(offset)&limit=10"
-        urlString = (urlString as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-        
-        return NSURL(string: urlString)!
+        NSUserDefaults.standardUserDefaults().setObject(articlesIds, forKey: votedArticlesIdsKey)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     private func mergeArticles(var loadedArticles loadedArticles: [Article], deleteOld: Bool) {
@@ -139,6 +140,20 @@ class ArticlesProvider: NSObject {
     
     func loadArticles(loadMore loadMore: Bool, completion: ArticlesProviderCompletion?) {
         
+        func articlesUrl() -> NSURL {
+            
+            var urlString = "\(baseUrl)article"
+            
+            if tag != nil {
+                urlString += "/tag/\(tag!)"
+            }
+            
+            urlString += "?offset=\(offset)&limit=10"
+            urlString = (urlString as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+            
+            return NSURL(string: urlString)!
+        }
+        
         assert(!isLoading)
         
         isLoading = true
@@ -147,18 +162,43 @@ class ArticlesProvider: NSObject {
             offset = 0
         }
         
-        dataLoader.loadData(url: url) { [weak self] (items, error) in
+        dataLoader.loadData(method: "GET", url: articlesUrl()) { [weak self] (items, error) in
             
             if self != nil {
                 
                 var loadedArticles = [Article]()
+                let voted = self!.votedArticlesIds
                 for item in items {
-                    loadedArticles.append(Article(json: item))
+                    let article = Article(json: item)
+                    article.isVoted = (voted.contains(article.id))
+                    loadedArticles.append(article)
                 }
                 
-                self?.mergeArticles(loadedArticles: loadedArticles, deleteOld: !loadMore)
-                self?.offset += items.count
-                self?.isLoading = false
+                self!.mergeArticles(loadedArticles: loadedArticles, deleteOld: !loadMore)
+                self!.offset += items.count
+                self!.isLoading = false
+            }
+            
+            if completion != nil {
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion?(error: error)
+                }
+            }
+        }
+    }
+    
+    func voteArticle(article article: Article, like: Bool, completion: ArticlesProviderCompletion?) {
+        
+        func voteUrl() -> NSURL {
+            let urlString = "\(baseUrl)article/\(article.id)/vote/\(like ? "yes" : "no")"
+            return NSURL(string: urlString)!
+        }
+        
+        dataLoader.loadData(method: "POST", url: voteUrl()) { [weak self] (_, error) -> Void in
+            
+            if error == nil {
+                article.isVoted = true
+                self?.addVotedArticleId(id: article.id)
             }
             
             if completion != nil {

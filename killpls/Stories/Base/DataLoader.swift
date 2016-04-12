@@ -12,20 +12,28 @@ class DataLoader: NSObject {
     
     typealias DataLoaderCompletion = (items: [[String: AnyObject]], error: String?) -> Void
     
-    func loadData(url url: NSURL, completionBlock: DataLoaderCompletion?) {
+    func loadData(method method: String, url: NSURL, completionBlock: DataLoaderCompletion?) {
         
         NetworkActivityIndicator.sharedIndicator.increase()
         
         let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
         
-        let task = session.dataTaskWithURL(url) { (data, response, error) in
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = method
+        
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
 
             if completionBlock != nil {
                 if (response as? NSHTTPURLResponse)?.statusCode == 200 {
-            
+                    
                     do {
-                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
-                        completionBlock!(items: json as! [[String: AnyObject]], error: nil)
+                        if data?.length > 0 {
+                            let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
+                            completionBlock!(items: json as! [[String: AnyObject]], error: nil)
+                        }
+                        else {
+                            completionBlock!(items: [], error: nil)
+                        }
                     }
                     catch {
                         completionBlock!(items: [], error: "Ошибка сервера")
@@ -33,7 +41,7 @@ class DataLoader: NSObject {
                 }
                 else {
                     var errorDescription: String!
-                    switch error!.code {
+                    switch error?.code ?? -1 {
                     case NSURLErrorNotConnectedToInternet:
                         errorDescription = "Проверьте подключение к сети Интернет"
                         
