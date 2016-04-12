@@ -14,6 +14,8 @@ import UIKit
     @IBOutlet weak var idLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var likeButton: ClosureButton!
+    @IBOutlet weak var dislikeButton: ClosureButton!
+    @IBOutlet weak var likesLabel: UILabel!
     
     @IBOutlet private weak var contentLabelWrapper: UIView!
     @IBOutlet private weak var tagsWrapper: UIView!

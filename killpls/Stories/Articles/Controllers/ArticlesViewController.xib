@@ -9,6 +9,8 @@
             <connections>
                 <outlet property="statusBarBlurViewHeightConstraint" destination="i0t-LR-UNF" id="UwT-cp-a0L"/>
                 <outlet property="tableView" destination="LeN-cL-UPf" id="SLf-zi-tab"/>
+                <outlet property="tagButton" destination="N4O-J1-VC9" id="WiX-Ph-xK5"/>
+                <outlet property="tagButtonCover" destination="gbO-1B-QEG" id="BJK-1T-jEd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -37,12 +39,39 @@
                     </constraints>
                     <blurEffect style="dark"/>
                 </visualEffectView>
+                <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbO-1B-QEG" userLabel="Tag Button Cover">
+                    <rect key="frame" x="535" y="555" width="50" height="30"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="j5M-7E-Aux">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N4O-J1-VC9" userLabel="Tag Button" customClass="ClosureButton" customModule="killpls" customModuleProvider="target">
+                                <rect key="frame" x="10" y="0.0" width="30" height="30"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onTagButtonTap:" destination="-1" eventType="touchUpInside" id="1G1-rl-T80"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="N4O-J1-VC9" firstAttribute="leading" secondItem="j5M-7E-Aux" secondAttribute="leading" constant="10" id="MoF-O2-2s1"/>
+                            <constraint firstItem="N4O-J1-VC9" firstAttribute="top" secondItem="j5M-7E-Aux" secondAttribute="top" id="XSw-Jr-aG5"/>
+                            <constraint firstAttribute="bottom" secondItem="N4O-J1-VC9" secondAttribute="bottom" id="lNK-Qp-zyu"/>
+                            <constraint firstAttribute="trailing" secondItem="N4O-J1-VC9" secondAttribute="trailing" constant="10" id="w3b-1R-CUZ"/>
+                        </constraints>
+                    </view>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
             </subviews>
             <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="LeN-cL-UPf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="24d-yU-xTs"/>
                 <constraint firstItem="Pid-Mq-um7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="45b-TF-bcG"/>
                 <constraint firstAttribute="bottom" secondItem="LeN-cL-UPf" secondAttribute="bottom" id="57p-ji-84U"/>
+                <constraint firstAttribute="trailing" secondItem="gbO-1B-QEG" secondAttribute="trailing" constant="15" id="QTg-Zs-yCb"/>
+                <constraint firstAttribute="bottom" secondItem="gbO-1B-QEG" secondAttribute="bottom" constant="15" id="RVa-am-vhW"/>
                 <constraint firstItem="LeN-cL-UPf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Wze-dB-e0I"/>
                 <constraint firstAttribute="trailing" secondItem="LeN-cL-UPf" secondAttribute="trailing" id="ZWq-dO-vDm"/>
                 <constraint firstItem="Pid-Mq-um7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="izb-We-dmv"/>

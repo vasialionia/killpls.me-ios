@@ -49,71 +49,76 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ZI-qx-hlP" userLabel="Like Button" customClass="ClosureButton" customModule="killpls" customModuleProvider="target">
-                        <rect key="frame" x="9" y="98" width="38" height="30"/>
+                        <rect key="frame" x="1" y="98" width="30" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" placeholder="YES" id="mdQ-sy-dvU"/>
+                            <constraint firstAttribute="width" constant="30" id="SY9-mg-3WB"/>
+                            <constraint firstAttribute="height" constant="30" id="mdQ-sy-dvU"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                        <state key="normal" title="Button"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                        <state key="normal" title="+"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZV-fy-ubH" userLabel="Likes Label">
+                        <rect key="frame" x="31" y="99" width="32" height="30"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddK-Ob-iEh" userLabel="Dislike Button" customClass="ClosureButton" customModule="killpls" customModuleProvider="target">
+                        <rect key="frame" x="63" y="98" width="30" height="30"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                        <state key="normal" title="−"/>
                     </button>
                     <view contentMode="scaleToFill" horizontalHuggingPriority="200" translatesAutoresizingMaskIntoConstraints="NO" id="Ano-ON-NBr" userLabel="Flexible Space">
-                        <rect key="frame" x="47" y="98" width="0.0" height="30"/>
+                        <rect key="frame" x="93" y="98" width="0.0" height="30"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" placeholder="YES" id="hxQ-zK-QTb"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oef-CO-Jra" userLabel="Tags Wrapper">
-                        <rect key="frame" x="47" y="98" width="264" height="30"/>
+                        <rect key="frame" x="93" y="98" width="218" height="30"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
+                    <constraint firstItem="Ano-ON-NBr" firstAttribute="leading" secondItem="ddK-Ob-iEh" secondAttribute="trailing" id="2zw-pt-9de"/>
+                    <constraint firstItem="ddK-Ob-iEh" firstAttribute="leading" secondItem="DZV-fy-ubH" secondAttribute="trailing" id="6pw-zr-EMk"/>
                     <constraint firstItem="oef-CO-Jra" firstAttribute="top" secondItem="4ZI-qx-hlP" secondAttribute="top" id="7HG-zi-z8u"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="BJw-Fo-1h6" secondAttribute="trailing" id="7qL-3W-B1K"/>
-                    <constraint firstItem="4ZI-qx-hlP" firstAttribute="leading" secondItem="BJw-Fo-1h6" secondAttribute="leading" id="BkA-bA-2Jk"/>
+                    <constraint firstItem="DZV-fy-ubH" firstAttribute="centerY" secondItem="4ZI-qx-hlP" secondAttribute="centerY" constant="1" id="Avy-l7-kRW"/>
+                    <constraint firstItem="4ZI-qx-hlP" firstAttribute="leading" secondItem="BJw-Fo-1h6" secondAttribute="leading" constant="-8" id="BkA-bA-2Jk"/>
                     <constraint firstAttribute="leadingMargin" secondItem="fSa-Kl-Kry" secondAttribute="leading" constant="8" id="CGq-DI-7sC"/>
                     <constraint firstAttribute="topMargin" secondItem="BaM-ct-1g1" secondAttribute="top" id="DJX-iB-f50"/>
                     <constraint firstItem="Ano-ON-NBr" firstAttribute="height" secondItem="4ZI-qx-hlP" secondAttribute="height" id="I4E-gV-xpR"/>
                     <constraint firstAttribute="topMargin" secondItem="BJw-Fo-1h6" secondAttribute="top" id="JQT-wF-yym"/>
                     <constraint firstItem="BaM-ct-1g1" firstAttribute="leading" secondItem="BJw-Fo-1h6" secondAttribute="trailing" constant="8" symbolic="YES" id="LpH-iF-J1l"/>
                     <constraint firstAttribute="bottomMargin" secondItem="4ZI-qx-hlP" secondAttribute="bottom" constant="-8" id="Uki-f6-BKZ"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="oef-CO-Jra" secondAttribute="trailing" constant="-3" id="V18-mX-f0U"/>
-                    <constraint firstItem="oef-CO-Jra" firstAttribute="leading" secondItem="4ZI-qx-hlP" secondAttribute="trailing" constant="8" symbolic="YES" id="XeM-d1-BQK"/>
                     <constraint firstItem="oef-CO-Jra" firstAttribute="height" secondItem="4ZI-qx-hlP" secondAttribute="height" id="ZKB-cM-Hcs"/>
                     <constraint firstAttribute="leadingMargin" secondItem="BJw-Fo-1h6" secondAttribute="leading" constant="-1" id="aCb-EL-h7B"/>
                     <constraint firstItem="BaM-ct-1g1" firstAttribute="height" secondItem="BJw-Fo-1h6" secondAttribute="height" id="bGv-iw-wpi"/>
-                    <constraint firstItem="Ano-ON-NBr" firstAttribute="leading" secondItem="4ZI-qx-hlP" secondAttribute="trailing" id="cwM-Ag-oeO"/>
                     <constraint firstItem="4ZI-qx-hlP" firstAttribute="top" secondItem="fSa-Kl-Kry" secondAttribute="bottom" constant="-3" id="hly-g0-pC5"/>
                     <constraint firstItem="oef-CO-Jra" firstAttribute="trailing" secondItem="BaM-ct-1g1" secondAttribute="trailing" id="hv3-9P-mHM"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="fSa-Kl-Kry" secondAttribute="bottom" constant="29" id="k6j-VN-lkz"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="oef-CO-Jra" secondAttribute="bottom" constant="-8" id="pZ9-v6-WDb"/>
+                    <constraint firstItem="DZV-fy-ubH" firstAttribute="leading" secondItem="4ZI-qx-hlP" secondAttribute="trailing" id="kmx-KW-Bzx"/>
+                    <constraint firstItem="DZV-fy-ubH" firstAttribute="height" secondItem="4ZI-qx-hlP" secondAttribute="height" id="ogU-M2-Cgk"/>
+                    <constraint firstItem="ddK-Ob-iEh" firstAttribute="centerY" secondItem="4ZI-qx-hlP" secondAttribute="centerY" id="pG2-h4-7XA"/>
                     <constraint firstItem="oef-CO-Jra" firstAttribute="leading" secondItem="Ano-ON-NBr" secondAttribute="trailing" id="qhY-na-ym3"/>
-                    <constraint firstAttribute="leadingMargin" secondItem="4ZI-qx-hlP" secondAttribute="leading" constant="2" id="sqs-du-hBz"/>
                     <constraint firstItem="fSa-Kl-Kry" firstAttribute="top" secondItem="BJw-Fo-1h6" secondAttribute="bottom" constant="3" id="upp-13-2xA"/>
                     <constraint firstAttribute="trailingMargin" secondItem="fSa-Kl-Kry" secondAttribute="trailing" constant="-8" id="vFJ-mN-Gqk"/>
+                    <constraint firstItem="ddK-Ob-iEh" firstAttribute="width" secondItem="4ZI-qx-hlP" secondAttribute="width" id="wi5-JC-uAt"/>
                     <constraint firstAttribute="trailingMargin" secondItem="BaM-ct-1g1" secondAttribute="trailing" constant="1" id="x2j-yz-fYd"/>
+                    <constraint firstItem="ddK-Ob-iEh" firstAttribute="height" secondItem="4ZI-qx-hlP" secondAttribute="height" id="yQ1-64-pp4"/>
                     <constraint firstItem="Ano-ON-NBr" firstAttribute="top" secondItem="4ZI-qx-hlP" secondAttribute="top" id="zRC-Vw-GcU"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="7qL-3W-B1K"/>
-                        <exclude reference="k6j-VN-lkz"/>
-                        <exclude reference="sqs-du-hBz"/>
-                        <exclude reference="V18-mX-f0U"/>
-                        <exclude reference="XeM-d1-BQK"/>
-                        <exclude reference="pZ9-v6-WDb"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="contentLabel" destination="Ta1-So-xQg" id="o7x-jO-Sf6"/>
                 <outlet property="contentLabelWrapper" destination="fSa-Kl-Kry" id="gvi-0p-Bda"/>
                 <outlet property="dateLabel" destination="BJw-Fo-1h6" id="kqS-k7-mda"/>
+                <outlet property="dislikeButton" destination="ddK-Ob-iEh" id="qfV-Vk-woq"/>
                 <outlet property="idLabel" destination="BaM-ct-1g1" id="nSN-6B-3iY"/>
                 <outlet property="likeButton" destination="4ZI-qx-hlP" id="qaz-Kj-Etv"/>
+                <outlet property="likesLabel" destination="DZV-fy-ubH" id="qee-Td-QOr"/>
                 <outlet property="tagsWrapper" destination="oef-CO-Jra" id="VnV-wn-xYV"/>
             </connections>
             <point key="canvasLocation" x="455" y="447.5"/>

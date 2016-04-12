@@ -24,10 +24,21 @@ import UIKit
                 self?.articlesProvider.tag = tag
                 self?.startLoading()
             }
+            
+            tagButtonCover.hidden = (tag == nil)
+            tagButton.title = "\(tag ?? "") ╳"
         }
     }
     
-    @IBOutlet weak var statusBarBlurViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var tagButtonCover: UIVisualEffectView! {
+        didSet {
+            tagButtonCover.layer.masksToBounds = true
+            tagButtonCover.layer.cornerRadius = 5
+        }
+    }
+    
+    @IBOutlet private weak var tagButton: ClosureButton!
+    @IBOutlet private weak var statusBarBlurViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             
@@ -40,6 +51,10 @@ import UIKit
             tableView.separatorColor = UIColor.clearColor()
             tableView.tableFooterView = LoadingFooterView.view()
         }
+    }
+    
+    @IBAction private func onTagButtonTap(sender: ClosureButton) {
+        tag = nil
     }
     
     private func startLoading(loadMore loadMore: Bool = false) {
@@ -118,9 +133,12 @@ import UIKit
         cell.idLabel.text = "#\(article.id)"
         cell.contentLabel.text = article.content
         cell.setTags(tags: article.tags)
-        cell.likeButton.title = "+ \(article.likesCount) -"
+        cell.likesLabel.text = "\(article.likesCount)"
         
         cell.likeButton.onTap = { (_) in
+            print("like")
+        }
+        cell.dislikeButton.onTap = { (_) in
             print("like")
         }
         
