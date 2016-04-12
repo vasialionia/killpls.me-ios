@@ -29,7 +29,7 @@ class SideViewController: UIViewController {
         setMainViewActive(active: true)
     }
     
-    private func setMainViewActive(active active: Bool, animated: Bool = true) {
+    func setMainViewActive(active active: Bool, animated: Bool = true) {
         UIView.animateWithDuration(animated ? 0.2 : 0, delay: 0, options: .CurveEaseOut, animations: { [weak mainView, weak sideView, weak view] in
             
             mainView?.transform = active ? CGAffineTransformIdentity : CGAffineTransformMakeScale(0.95, 0.95)
@@ -86,7 +86,7 @@ class SideViewController: UIViewController {
             
             view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[sideView]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["sideView": sideView]))
             view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[sideView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["sideView": sideView]))
-            view.addConstraint(NSLayoutConstraint(item: sideView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.75, constant: 0))
+            view.addConstraint(NSLayoutConstraint(item: sideView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.77, constant: 0))
         }
         
         func initRecongnizers() {

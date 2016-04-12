@@ -17,6 +17,16 @@ import UIKit
         return (tableView.tableFooterView as? LoadingFooterView)?.activityIndicatorView
     }
     
+    var tag: String? {
+        didSet {
+            tableView.setContentOffset(CGPoint(x: 0, y: -tableView.contentInset.top), animated: true)
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_MSEC) * Int64(200)), dispatch_get_main_queue()) { [weak self, tag] in
+                self?.articlesProvider.tag = tag
+                self?.startLoading()
+            }
+        }
+    }
+    
     @IBOutlet weak var statusBarBlurViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -39,7 +49,10 @@ import UIKit
         }
         
         refreshControl.beginRefreshing()
-        bottomActivityIndicator.startAnimating()
+        
+        if articlesProvider.articlesCount > 0 {
+            bottomActivityIndicator.startAnimating()
+        }
         
         articlesProvider.loadArticles(loadMore: loadMore) { [weak refreshControl, bottomActivityIndicator] in
             refreshControl?.endRefreshing()
@@ -108,8 +121,8 @@ import UIKit
         }
         
         for button in cell.tagsButtons {
-            button.onTap = { (button) in
-                print("\(button.title)")
+            button.onTap = { [weak self] (button) in
+                self?.tag = button.title
             }
         }
         

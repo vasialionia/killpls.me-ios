@@ -12,11 +12,25 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var rootViewController: SideViewController {
+        
+        let articlesViewController = ArticlesViewController()
+        let menuViewController = MenuViewController()
+        let sideViewController = SideViewController(mainViewController: articlesViewController, sideViewController: menuViewController)
+        
+        menuViewController.onTagTap = { [weak articlesViewController, weak sideViewController] (tag: String?) in
+            articlesViewController?.tag = tag
+            sideViewController?.setMainViewActive(active: true, animated: true)
+        }
+        
+        return sideViewController
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds);
-        window!.rootViewController = SideViewController(mainViewController: ArticlesViewController(), sideViewController: UIViewController())
+        window!.rootViewController = rootViewController
         window!.makeKeyAndVisible()
         
         return true

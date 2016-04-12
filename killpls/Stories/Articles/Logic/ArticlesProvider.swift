@@ -29,6 +29,22 @@ class ArticlesProvider: NSObject {
     var onUpdateEnd: ArticlesProviderEvent?
     var onUpdate: ArticlesProviderUpdate?
     
+    var tag: String?
+    
+    private var url: NSURL {
+        
+        var urlString = "http://0.0.0.0:5000/api/article"
+        
+        if tag != nil {
+            urlString += "/tag/\(tag!)"
+        }
+        
+        urlString += "?offset=\(offset)&limit=10"
+        urlString = (urlString as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        
+        return NSURL(string: urlString)!
+    }
+    
     private func mergeArticles(var loadedArticles loadedArticles: [Article], deleteOld: Bool) {
         
         func mergeDelete() {
@@ -131,7 +147,7 @@ class ArticlesProvider: NSObject {
             offset = 0
         }
         
-        dataLoader.loadData(url: NSURL(string: "http://0.0.0.0:5000/api/article?offset=\(offset)&limit=10")!) { [weak self] (items) in
+        dataLoader.loadData(url: url) { [weak self] (items) in
             
             if self != nil {
                 
