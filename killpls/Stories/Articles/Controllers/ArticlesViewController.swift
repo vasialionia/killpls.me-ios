@@ -55,6 +55,7 @@ import UIKit
     
     @IBAction private func onTagButtonTap(sender: ClosureButton) {
         tag = nil
+        AnalyticsManager.sharedManager.trackView(name: "Articles:Tag:None")
     }
     
     private func startLoading(loadMore loadMore: Bool = false) {
@@ -97,6 +98,8 @@ import UIKit
                 UIAlertView(title: "Ошибка", message: error!, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "OK").show()
             }
         }
+        
+        AnalyticsManager.sharedManager.trackView(name: "Articles:Vote:\(like ? "like" : "dislike")")
     }
     
     override func viewDidLoad() {
@@ -164,6 +167,7 @@ import UIKit
         for button in cell.tagsButtons {
             button.onTap = { [weak self] (button) in
                 self?.tag = button.title
+                AnalyticsManager.sharedManager.trackView(name: "Articles:Tag:\(button.title)")
             }
         }
         

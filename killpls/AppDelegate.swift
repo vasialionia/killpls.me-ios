@@ -33,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.rootViewController = rootViewController
         window!.makeKeyAndVisible()
         
+        GAI.sharedInstance().trackerWithTrackingId("123")
+        
         return true
     }
 }

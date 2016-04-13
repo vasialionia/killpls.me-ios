@@ -160,21 +160,26 @@ import MessageUI
         switch sectionCase {
         case .New:
             onTagTap?(tag: nil)
+            AnalyticsManager.sharedManager.trackView(name: "Menu:New")
             
         case .Tags:
             onTagTap?(tag: tags[indexPath.row])
+            AnalyticsManager.sharedManager.trackView(name: "Menu:Tag:\(tags[indexPath.row])")
             
         case .Tell:
             UIApplication.sharedApplication().openURL(NSURL(string: "http://killpls.me/add/")!)
+            AnalyticsManager.sharedManager.trackView(name: "Menu:Tell")
             
         case .SourceCode:
             let rowCase = SourceCodeRows(rawValue: indexPath.row)!
             switch(rowCase) {
             case .IOS:
                 UIApplication.sharedApplication().openURL(NSURL(string: "https://github.com/vasialionia/killpls.me-ios")!)
+                AnalyticsManager.sharedManager.trackView(name: "Menu:Source:iOS")
                 
             case .Backend:
                 UIApplication.sharedApplication().openURL(NSURL(string: "https://github.com/vasialionia/killpls.me-api")!)
+                AnalyticsManager.sharedManager.trackView(name: "Menu:Source:Backend")
                 
             case .Count:
                 assert(false)
@@ -187,9 +192,11 @@ import MessageUI
             switch(rowCase) {
             case .Connect:
                 topic = "Support"
+                AnalyticsManager.sharedManager.trackView(name: "Menu:Connect:Support")
                 
             case .ReportBug:
                 topic = "ReportBug"
+                AnalyticsManager.sharedManager.trackView(name: "Menu:Connect:ReportBug")
                 
             case .Count:
                 assert(false)

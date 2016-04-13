@@ -37,10 +37,12 @@ import UIKit
     
     func onRightSwipe(recognizer: UISwipeGestureRecognizer) {
         setMainViewActive(active: false)
+        AnalyticsManager.sharedManager.trackView(name: "Swipe:Menu")
     }
     
     func onLeftSwipe(recognizer: UISwipeGestureRecognizer) {
         setMainViewActive(active: true)
+        AnalyticsManager.sharedManager.trackView(name: "Swipe:Article")
     }
     
     func setMainViewActive(active active: Bool, animated: Bool = true) {
@@ -56,6 +58,7 @@ import UIKit
                     if active {
                         tutorialImageView!.hidden = true
                         self?.isTutorialShown = true
+                        AnalyticsManager.sharedManager.trackView(name: "Tutorial:End")
                     }
                     else {
                         tutorialImageView!.image = UIImage(named: "left")
@@ -146,6 +149,14 @@ import UIKit
     override func viewWillAppear(animated: Bool) {
         if !isTutorialShown {
             tutorialImageView.hidden = false
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        AnalyticsManager.sharedManager.trackView(name: "Start")
+        
+        if !isTutorialShown {
+            AnalyticsManager.sharedManager.trackView(name: "Tutorial:Start")
         }
     }
 }
