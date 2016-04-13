@@ -90,6 +90,7 @@ import MessageUI
             
         case .Count:
             assert(false)
+            return 0
         }
     }
     
