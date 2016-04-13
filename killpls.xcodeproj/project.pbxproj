@@ -24,6 +24,7 @@
 		8304BD581CBC215E003B1AAE /* LoadingFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8304BD571CBC215E003B1AAE /* LoadingFooterView.xib */; };
 		8304BD601CBCD6C3003B1AAE /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304BD5E1CBCD6C3003B1AAE /* MenuViewController.swift */; };
 		8304BD611CBCD6C3003B1AAE /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8304BD5F1CBCD6C3003B1AAE /* MenuViewController.xib */; };
+		8304BD631CBE40B3003B1AAE /* SideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8304BD621CBE40B3003B1AAE /* SideViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		8304BD571CBC215E003B1AAE /* LoadingFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingFooterView.xib; sourceTree = "<group>"; };
 		8304BD5E1CBCD6C3003B1AAE /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		8304BD5F1CBCD6C3003B1AAE /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
+		8304BD621CBE40B3003B1AAE /* SideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				8304BD531CBACDAE003B1AAE /* SideViewController.swift */,
+				8304BD621CBE40B3003B1AAE /* SideViewController.xib */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -211,8 +214,6 @@
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
-			knownRegions = (
-			);
 			mainGroup = 8304BCF81CB930AF003B1AAE;
 			productRefGroup = 8304BD021CB930AF003B1AAE /* Products */;
 			projectDirPath = "";
@@ -234,6 +235,7 @@
 				8304BD0C1CB930AF003B1AAE /* Assets.xcassets in Resources */,
 				8304BD3E1CB95F97003B1AAE /* ArticlesViewController.xib in Resources */,
 				8304BD181CB950E1003B1AAE /* LaunchScreen.storyboard in Resources */,
+				8304BD631CBE40B3003B1AAE /* SideViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +383,7 @@
 				8304BD151CB930AF003B1AAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

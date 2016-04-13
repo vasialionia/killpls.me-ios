@@ -24,7 +24,7 @@ class ArticlesProvider: NSObject {
     private var articles = [Article]()
     private var offset = 0
     private(set) var isLoading = false
-    private let baseUrl = "http://0.0.0.0:5000/api/"
+    private let baseUrl = "http://prod-vlkillpls.rhcloud.com/api/"
     
     var onUpdateBegin: ArticlesProviderEvent?
     var onUpdateEnd: ArticlesProviderEvent?
