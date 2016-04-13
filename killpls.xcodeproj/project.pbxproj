@@ -338,7 +338,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run api_key api_secret";
+			shellScript = "#./Fabric.framework/run api_key api_secret";
 		};
 /* End PBXShellScriptBuildPhase section */
 
