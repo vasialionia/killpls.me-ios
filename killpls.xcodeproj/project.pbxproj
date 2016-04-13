@@ -31,6 +31,8 @@
 		8304BD791CBE6792003B1AAE /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8304BD781CBE6792003B1AAE /* libz.tbd */; };
 		8304BD7F1CBE67D1003B1AAE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8304BD7E1CBE67D1003B1AAE /* SystemConfiguration.framework */; };
 		8304BD811CBE68AD003B1AAE /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304BD801CBE68AD003B1AAE /* AnalyticsManager.swift */; };
+		8304BD8D1CBE749D003B1AAE /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8304BD8B1CBE749D003B1AAE /* Fabric.framework */; };
+		8304BD8E1CBE749D003B1AAE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8304BD8C1CBE749D003B1AAE /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +75,8 @@
 		8304BD7C1CBE67AC003B1AAE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		8304BD7E1CBE67D1003B1AAE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8304BD801CBE68AD003B1AAE /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		8304BD8B1CBE749D003B1AAE /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		8304BD8C1CBE749D003B1AAE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,8 @@
 				8304BD771CBE677E003B1AAE /* CoreData.framework in Frameworks */,
 				8304BD751CBE676B003B1AAE /* libsqlite3.tbd in Frameworks */,
 				8304BD711CBE660D003B1AAE /* libGoogleAnalyticsServices.a in Frameworks */,
+				8304BD8D1CBE749D003B1AAE /* Fabric.framework in Frameworks */,
+				8304BD8E1CBE749D003B1AAE /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +244,8 @@
 		8304BD731CBE674F003B1AAE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8304BD8B1CBE749D003B1AAE /* Fabric.framework */,
+				8304BD8C1CBE749D003B1AAE /* Crashlytics.framework */,
 				8304BD7E1CBE67D1003B1AAE /* SystemConfiguration.framework */,
 				8304BD7C1CBE67AC003B1AAE /* CFNetwork.framework */,
 				8304BD7A1CBE6799003B1AAE /* MobileCoreServices.framework */,
@@ -258,6 +266,7 @@
 				8304BCFD1CB930AF003B1AAE /* Sources */,
 				8304BCFE1CB930AF003B1AAE /* Frameworks */,
 				8304BCFF1CB930AF003B1AAE /* Resources */,
+				8304BD8A1CBE7485003B1AAE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -287,6 +296,9 @@
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 8304BCF81CB930AF003B1AAE;
 			productRefGroup = 8304BD021CB930AF003B1AAE /* Products */;
 			projectDirPath = "";
@@ -313,6 +325,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8304BD8A1CBE7485003B1AAE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run api_key api_secret";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8304BCFD1CB930AF003B1AAE /* Sources */ = {
@@ -420,6 +448,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = killpls/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -436,6 +468,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = killpls/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (

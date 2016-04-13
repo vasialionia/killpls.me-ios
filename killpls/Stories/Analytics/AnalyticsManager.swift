@@ -19,7 +19,7 @@ class AnalyticsManager: NSObject {
         GAI.sharedInstance().dispatchInterval = 3
         GAI.sharedInstance().trackUncaughtExceptions = true
         
-        tracker = GAI.sharedInstance().trackerWithTrackingId("")
+        tracker = GAI.sharedInstance().trackerWithTrackingId("tracking_id")
     }
     
     func trackView(name name: String) {
