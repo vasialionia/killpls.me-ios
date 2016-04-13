@@ -78,6 +78,6 @@ import UIKit
     }
     
     class func height(content content: String, width: CGFloat) -> CGFloat {
-        return (content as NSString).boundingRectWithSize(CGSize(width: width - 20, height: CGFloat(Int.max)), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 13)!], context: nil).size.height + CGFloat(64)
+        return (content as NSString).boundingRectWithSize(CGSize(width: width - 20, height: CGFloat(Int.max)), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 13)!], context: nil).size.height + CGFloat(66)
     }
 }
