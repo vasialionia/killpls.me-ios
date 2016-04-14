@@ -24,6 +24,7 @@ class ArticlesProvider: NSObject {
     private var articles = [Article]()
     private var offset = 0
     private(set) var isLoading = false
+    private(set) var hasMore = true
     private let baseUrl = "http://prod-vlkillpls.rhcloud.com/api/"
     
     var onUpdateBegin: ArticlesProviderEvent?
@@ -140,6 +141,8 @@ class ArticlesProvider: NSObject {
     
     func loadArticles(loadMore loadMore: Bool, completion: ArticlesProviderCompletion?) {
         
+        let limit = 10
+        
         func articlesUrl() -> NSURL {
             
             var urlString = "\(baseUrl)article"
@@ -148,7 +151,7 @@ class ArticlesProvider: NSObject {
                 urlString += "/tag/\(tag!)"
             }
             
-            urlString += "?offset=\(offset)&limit=10"
+            urlString += "?offset=\(offset)&limit=\(limit)"
             urlString = (urlString as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
             
             return NSURL(string: urlString)!
@@ -176,6 +179,7 @@ class ArticlesProvider: NSObject {
                 
                 self!.mergeArticles(loadedArticles: loadedArticles, deleteOld: !loadMore)
                 self!.offset += items.count
+                self!.hasMore = (items.count == limit)
                 self!.isLoading = false
             }
             

@@ -168,19 +168,19 @@ import MessageUI
             AnalyticsManager.sharedManager.trackView(name: "Menu:Tag:\(tags[indexPath.row])")
             
         case .Tell:
-            UIApplication.sharedApplication().openURL(NSURL(string: "http://killpls.me/add/")!)
             AnalyticsManager.sharedManager.trackView(name: "Menu:Tell")
+            UIApplication.sharedApplication().openURL(NSURL(string: "http://killpls.me/add/")!)
             
         case .SourceCode:
             let rowCase = SourceCodeRows(rawValue: indexPath.row)!
             switch(rowCase) {
             case .IOS:
-                UIApplication.sharedApplication().openURL(NSURL(string: "https://github.com/vasialionia/killpls.me-ios")!)
                 AnalyticsManager.sharedManager.trackView(name: "Menu:Source:iOS")
+                UIApplication.sharedApplication().openURL(NSURL(string: "https://github.com/vasialionia/killpls.me-ios")!)
                 
             case .Backend:
-                UIApplication.sharedApplication().openURL(NSURL(string: "https://github.com/vasialionia/killpls.me-api")!)
                 AnalyticsManager.sharedManager.trackView(name: "Menu:Source:Backend")
+                UIApplication.sharedApplication().openURL(NSURL(string: "https://github.com/vasialionia/killpls.me-api")!)
                 
             case .Count:
                 assert(false)

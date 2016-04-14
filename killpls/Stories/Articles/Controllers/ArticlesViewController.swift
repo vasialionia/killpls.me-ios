@@ -13,8 +13,8 @@ import UIKit
     private let articlesProvider = ArticlesProvider()
     private var refreshControl: UIRefreshControl!
     
-    private var bottomActivityIndicator: UIActivityIndicatorView! {
-        return (tableView.tableFooterView as? LoadingFooterView)?.activityIndicatorView
+    private var loadingFooterView: LoadingFooterView! {
+        return tableView.tableFooterView as? LoadingFooterView
     }
     
     var tag: String? {
@@ -37,6 +37,13 @@ import UIKit
         }
     }
     
+    @IBOutlet weak var thanksLabelCover: UIVisualEffectView! {
+        didSet {
+            thanksLabelCover.layer.masksToBounds = true
+            thanksLabelCover.layer.cornerRadius = thanksLabelCover.bounds.size.height / 2
+        }
+    }
+    
     @IBOutlet private weak var tagButton: ClosureButton!
     @IBOutlet private weak var statusBarBlurViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableView: UITableView! {
@@ -50,6 +57,11 @@ import UIKit
             
             tableView.separatorColor = UIColor.clearColor()
             tableView.tableFooterView = LoadingFooterView.view()
+            
+            loadingFooterView.moreButton.onTap = { (_) in
+                AnalyticsManager.sharedManager.trackView(name: "Articles:MoreOnSite")
+                UIApplication.sharedApplication().openURL(NSURL(string: "http://killpls.me")!)
+            }
         }
     }
     
@@ -64,15 +76,22 @@ import UIKit
             return
         }
         
-        refreshControl.beginRefreshing()
-        
-        if articlesProvider.articlesCount > 0 {
-            bottomActivityIndicator.startAnimating()
+        if loadMore && !articlesProvider.hasMore {
+            return
         }
         
-        articlesProvider.loadArticles(loadMore: loadMore) { [weak refreshControl, bottomActivityIndicator] (error) in
-            refreshControl?.endRefreshing()
-            bottomActivityIndicator?.stopAnimating()
+        refreshControl.beginRefreshing()
+        loadingFooterView.moreButton.hidden = true
+        
+        if articlesProvider.articlesCount > 0 {
+            loadingFooterView.activityIndicatorView.startAnimating()
+        }
+        
+        articlesProvider.loadArticles(loadMore: loadMore) { [weak self] (error) in
+            self?.refreshControl.endRefreshing()
+            self?.loadingFooterView.activityIndicatorView.stopAnimating()
+            self?.loadingFooterView.moreButton.hidden = self?.articlesProvider.hasMore ?? false
+            self?.updateTableViewInsets()
             
             if error != nil {
                 UIAlertView(title: "Ошибка", message: error!, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "OK").show()
@@ -89,7 +108,7 @@ import UIKit
         cell?.likeButton.hidden = true
         cell?.dislikeButton.hidden = true
         
-        self.articlesProvider.voteArticle(article: article, like: true) { (error) in
+        self.articlesProvider.voteArticle(article: article, like: true) { [weak thanksLabelCover] (error) in
             
             if error != nil {
                 
@@ -97,9 +116,27 @@ import UIKit
                 cell?.dislikeButton.hidden = false
                 UIAlertView(title: "Ошибка", message: error!, delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "OK").show()
             }
+            else {
+                
+                UIView.animateWithDuration(0.4, delay: 0, options: .CurveEaseOut, animations: { [weak thanksLabelCover] in
+                    thanksLabelCover?.alpha = 1
+                    }) { (_) in
+                        UIView.animateWithDuration(0.4, delay: 0.5, options: .CurveEaseIn, animations: { [weak thanksLabelCover] in
+                            thanksLabelCover?.alpha = 0
+                            }, completion: nil)
+                }
+            }
         }
         
         AnalyticsManager.sharedManager.trackView(name: "Articles:Vote:\(like ? "like" : "dislike")")
+    }
+    
+    private func updateTableViewInsets() {
+        
+        let topInset = statusBarBlurViewHeightConstraint.constant
+        let bottomInset = tableView.tableFooterView!.bounds.size.height * (articlesProvider.hasMore ? -1 : 0)
+        
+        tableView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0)
     }
     
     override func viewDidLoad() {
@@ -132,7 +169,8 @@ import UIKit
         
         let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.size.height
         statusBarBlurViewHeightConstraint.constant = statusBarHeight
-        tableView.contentInset = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: -tableView.tableFooterView!.bounds.size.height, right: 0)
+        
+        updateTableViewInsets()
     }
     
     override func viewWillAppear(animated: Bool) {

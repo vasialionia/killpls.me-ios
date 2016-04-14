@@ -8,22 +8,32 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoadingFooterView" customModule="killpls"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LoadingFooterView">
-            <rect key="frame" x="0.0" y="0.0" width="150" height="75"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="AvL-z9-yAV">
-                    <rect key="frame" x="57" y="19" width="37" height="37"/>
+                    <rect key="frame" x="142" y="19" width="37" height="37"/>
                     <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </activityIndicatorView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2w-CI-ZDJ" userLabel="More Button" customClass="ClosureButton" customModule="killpls" customModuleProvider="target">
+                    <rect key="frame" x="42" y="23" width="237" height="30"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                    <state key="normal" title="Больше историй на http://killpls.me">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="c2w-CI-ZDJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="3JZ-qx-4jc"/>
                 <constraint firstItem="AvL-z9-yAV" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="AhP-8q-IJy"/>
+                <constraint firstItem="c2w-CI-ZDJ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="CBn-L2-FUV"/>
                 <constraint firstItem="AvL-z9-yAV" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="o9X-DP-SWh"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="activityIndicatorView" destination="AvL-z9-yAV" id="QRy-N4-sxV"/>
+                <outlet property="moreButton" destination="c2w-CI-ZDJ" id="0qQ-P9-KtA"/>
             </connections>
         </view>
     </objects>
